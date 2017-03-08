@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="blog.store.mapper.AuthorMapper">
+	
+	
+ 	 <resultMap type="Author" id="authorMap"> <!-- result 타임 구분하는 아이디 설정            -->   
+		<id column="author_id"  property="id"  />
+		<result column="author_password" property="password" /><!-- column 은 디비테이블에 이름 property 는 자바 객체 이름  -->
+		<result column="author_name" property="name" />
+	</resultMap>
+	
+	
+	
+	<sql id="selectAuthor">     <!-- 쿼리문 따로 지정  아이디로 구분  -->
+		select author_id , author_password, author_name, email
+		from author_tb		
+	</sql>
+	
+	<sql id="insertAuthor">
+		insert into author_tb(author_id, author_password, author_name, email)
+	</sql>
+		
+	
+	
+	
+
+	<select id="findAuthor" parameterType="String" resultMap="authorMap">   <!-- resultype을 id 맞게 쓰면 됨  -->
+		<include refid="selectAuthor"/>
+		where author_id = #{id}
+	</select>
+	
+	
+	<select id="findAllAuthors" resultMap="authorMap">
+		<include refid="selectAuthor"/>
+		order by author_id DESC
+	</select>
+	
+	<select id="findAuthorsByIds" resultMap="authorMap">
+		<include refid="selectAuthor"/>
+		where author_id IN
+		<foreach collection="list" item="id" separator="," open="(" close=")">
+			#{id}
+		</foreach>
+	</select>
+	
+	<select id="findAuthorByCondition" parameterType="hashmap" resultType="Author" >
+	
+		<include refid="selectAuthor"/>
+		<if test="id !=null">
+			where author_id = #{id}
+		</if>
+	</select>
+	
+	
+	
+	
+	<select id="findAuthorsByName" parameterType="String" resultMap="authorMap" >
+	<include refid="selectAuthor"/>
+		where author_name = #{name}
+	</select>
+	
+	
+	<insert id="registAuthor" parameterType="Author" > 
+		<include refid="insertAuthor"/>
+		values(#{id},#{password},#{name},#{email})
+	</insert>
+	
+	<update id="updateAuthor" parameterType="Author">
+		update author_tb set author_id=#{id} ,author_password=#{password} ,author_name=#{name} ,email=#{email}
+		where author_id = #{id}
+	</update>
+	<delete id="deleteAuthor" parameterType="String">
+		delete from author_tb where author_id = #{id}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</mapper>

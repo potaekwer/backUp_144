@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="lecture.store.mapper.LectureMapper">
+  	<insert id="create" parameterType="Lecture">
+  		insert into lecture (id, lectureName, instructor, introduce)
+  		values (#{id}, #{lectureName}, #{instructor}, #{introduce})
+  	</insert>
+  	<select id="readAll" resultType="Lecture">
+  		select id, lectureName, instructor, introduce
+  		from lecture
+  	</select>
+  	
+  	<select id="read" parameterType="String" resultType="Lecture">
+
+	select id, lectureName, instructor, introduce	
+	from lecture
+	where id = #{id} 	
+  	</select>
+  	<update id="update" parameterType="Lecture">
+  		update lecture
+  		set lectureName=#{lectureName}, instructor=#{instructor} , introduce=#{introduce}
+  		where id = #{id}
+  	</update>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from lecture where id = #{id}
+  	</delete>
+  	
+  </mapper>

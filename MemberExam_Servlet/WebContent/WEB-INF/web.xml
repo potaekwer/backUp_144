@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>MemberExam_Servlet</display-name>
+  <servlet>
+    <servlet-name>register</servlet-name>
+    <servlet-class>member.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/register.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>list</servlet-name>
+    <servlet-class>member.servlet.ListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>list</servlet-name>
+    <url-pattern>/list.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+    <servlet-name>searchName</servlet-name>
+    <servlet-class>member.servlet.SearchNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchName</servlet-name>
+    <url-pattern>/searchByName.do</url-pattern>
+  </servlet-mapping>
+   
+   
+   <servlet>
+    <servlet-name>Detail</servlet-name>
+    <servlet-class>member.servlet.DetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Detail</servlet-name>
+    <url-pattern>/detail.do</url-pattern>
+  </servlet-mapping>
+   
+   <servlet>
+    <servlet-name>Delete</servlet-name>
+    <servlet-class>member.servlet.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Delete</servlet-name>
+    <url-pattern>/delete.do</url-pattern>
+  </servlet-mapping>
+   
+  
+  
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="blog.store.mapper.AuthorMapper">
+	
+	
+ 	 <resultMap type="Music" id="musicMap"> <!-- result 타임 구분하는 아이디 설정            -->   
+		<id column="id"  property="id"  />
+		<result column="NAME" property="name" />
+		<result column="ARTIST_NAME" property="artist" /><!-- column 은 디비테이블에 이름 property 는 자바 객체 이름  -->
+		<result column="ALBUM_TITLE" property="album" />
+		<result column="IMAGE" property="image" />
+		<result column="AGENT_NAME" property="agent" />
+	</resultMap>
+	
+	
+	
+	<sql id="selectMusic">     <!-- 쿼리문 따로 지정  아이디로 구분  -->
+		select ID , NAME, ARTIST_NAME, ALBUM_TITLE,IMAGE,AGENT_NAME
+		from music_tb	
+	</sql>
+	
+	<sql id="insertMusic">
+		insert into music_tb(ID , NAME, ARTIST_NAME, ALBUM_TITLE,IMAGE,AGENT_NAME)
+	</sql>
+		
+	
+	
+	
+
+	<select id="read" parameterType="string" resultMap="musicMap">   <!-- resultmap을 id 맞게 쓰면 됨  -->
+		<include refid="selectMusic"/>
+		where author_id = #{id}
+	</select>
+	<select id="readByName" parameterType="String" resultMap="authorMap">
+		<include refid="selectMusic"/>
+		where name = #{name}
+	</select>
+	<select id="readAll" resultType="authorMap" >
+		<include refid="selectAuthor"/>
+	</select>
+	
+	</mapper>

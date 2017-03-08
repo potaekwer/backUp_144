@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>강좌 수정</title>
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/style.css" rel="stylesheet">
+<script type="text/javascript">
+	function beforeSubmit() {
+		var lectureNameNode = document.getElementById("lectureName");
+		var instructorNameNode = document.getElementById("instructorName");
+		if (!(lectureNameNode.value && lectureNameNode.value.trim())) {
+			alert("강좌명을 입력해주세요.");
+			lectureNameNode.focus();
+			return false;
+		}
+		if (!(instructorNameNode.value && instructorNameNode.value.trim())) {
+			alert("교수명을 입력해주세요.");
+			instructorNameNode.focus();
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+	<a href="list.html">목록화면으로</a>
+	<h3>강좌수정</h3>
+	<form action="modify" method="post" onsubmit="return beforeSubmit();">
+		<input id="lectureId" name="lectureId" type="hidden"
+			value="${lecture.id}">
+		<table class="table">
+			<colgroup>
+				<col width="150">
+				<col width="*">
+			</colgroup>
+			<tr>
+				<th>강좌명</th>
+				<td><input id="lectureName" name="lectureName"  class="form-control" type="text"
+					value="MyBatis"></td>
+			</tr>
+			<tr>
+				<th>교수명</th>
+				<td><input id="instructorName" name="instructorName"  class="form-control" 
+					type="text" value="김은영"></td>
+			</tr>
+			<tr>
+				<th>강좌소개</th>
+				<td><textarea id="lectureIntroduce" name="lectureIntroduce"  class="form-control" 
+						rows="7">MyBatis는 인터넷 보안 프로젝트 iBATIS(Internet Batis)가 구글코드로 이전하면서 등장한 데이터접근프레임워크입니다.</textarea></td>
+			</tr>
+		</table>
+		<div align="center">
+		<input class="btn" type="reset" value="취소"> <input class="btn btn-success" type="submit"
+			value="저장"></div>
+	</form>
+	<br>
+</body>
+</html>
